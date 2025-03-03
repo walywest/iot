@@ -1,0 +1,14 @@
+.DS_Store
+/*.box
+/.vagrant
+/iso
+/output-virtualbox-iso
+/packer_cache
+/vendor
+/tooling/.DS_Store
+/tooling/*.box
+/tooling/.vagrant
+/tooling/iso
+/tooling/output-virtualbox-iso
+/tooling/packer_cache
+/tooling/vendor
