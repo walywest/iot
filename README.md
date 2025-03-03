@@ -1,11 +1,4 @@
 
-# Build the box:
-(from /tooling)
-make build
-#NOTE: /tooling folder would not be present after building the .box file, that is all we need it for, IoT pdf says "The evaluation process will happen on the computer of the evaluated
-group." so will simply just build the .box before starting corrections, then we would only need dimple vagrant up --> vagrant ssh.
-# Add the box to your vagrant (locally)
-vagrant box add (anynameyouwant) tooling/nixos-24.05-virtualbox-x86_64.box
 
 Sample Vagrantfile
 ------------------
