@@ -2,21 +2,31 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    # vb.gui = true
+
+    # Customize the amount of memory on the VM:
+    # vb.memory = "3500"
+    vb.linked_clone = true
+  end
+
   config.vm.define "atouatiS" do |server|
-    server.vm.box = "any_name"
+    server.vm.box = "mynixos"
     server.vm.hostname = "atouatiS"
     server.vm.network "private_network", ip: "192.168.56.110"
     server.vm.provision :nixos, run: 'always', path: "conf/server.nix"
   end
 
   # # Define second machine (ServerWorker)
-  # config.vm.define "atouatiSW" do |worker|
-  #   worker.vm.box = "any_name"
-  #   worker.vm.hostname = "atouatiSW"
-  #   worker.vm.network "private_network", ip: "192.168.56.111"
-  #   # worker.vm.provision :nixos, run: 'always', path: "conf/worker.nix"
-  # end
-#
+  config.vm.define "atouatiSW" do |worker|
+    worker.vm.box = "mynixos"
+    worker.vm.hostname = "atouatiSW"
+    worker.vm.network "private_network", ip: "192.168.56.111"
+    worker.vm.provision :nixos, run: 'always', path: "conf/worker.nix"
+  end
+
 
 
   # NOTE: This will enable public access to the opened port

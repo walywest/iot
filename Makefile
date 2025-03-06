@@ -1,6 +1,7 @@
+VERSION=24.11
 BUILD_DIR=tooling
-BOX_NAME=any_name
-BOX_FILE=$(BUILD_DIR)/nixos-24.05-virtualbox-iso.virtualbox-x86_64.box
+BOX_NAME=mynixos
+BOX_FILE=$(BUILD_DIR)/nixos-$(VERSION)-virtualbox-iso.virtualbox-x86_64.box
 
 .PHONY: build init run
 

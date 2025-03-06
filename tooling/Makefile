@@ -1,5 +1,5 @@
 BUILDER ?= virtualbox-iso.virtualbox
-VERSION ?= 24.05
+VERSION ?= 24.11
 ARCH ?= x86_64
 REPO ?= nixbox/nixos
 USE_EFI ?= false

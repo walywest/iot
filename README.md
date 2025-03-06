@@ -1,5 +1,5 @@
 # Description
-For ease of use, i changed the version variables inside the source of nixbox to match latest stable version 24.05 (hopefuly stable)
+For ease of use, i changed the version variables inside the source of nixbox to match latest stable version 24.11 (hopefuly stable)
 # Usage:
 Use:
 

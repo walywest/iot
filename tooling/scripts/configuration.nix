@@ -74,5 +74,6 @@
       root   ALL=(ALL) SETENV: ALL
       %wheel ALL=(ALL) NOPASSWD: ALL, SETENV: ALL
     '';
+  system.stateVersion = "24.11";
 
 }

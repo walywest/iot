@@ -9,6 +9,7 @@
 /tooling/*.box
 /tooling/.vagrant
 /tooling/iso
+/tooling/*.iso
 /tooling/output-virtualbox-iso
 /tooling/packer_cache
 /tooling/vendor
