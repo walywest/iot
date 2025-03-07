@@ -1,11 +1,9 @@
 { config, pkgs, ... }:
 {
+
   # K3S Server mode
-  services.k3s = {
-    enable = true;
-    role = "server";
-    token = "<randomized common secret>";
-    clusterInit = true;
-  };
+  services.k3s.roles = "server"
+  services.k3s.token = "<randomized common secret>";
+  services.k3s.clusterInit = true;
 
 }

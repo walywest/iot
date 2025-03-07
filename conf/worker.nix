@@ -2,11 +2,8 @@
 {
 
   # K3S Agent mode
-  services.k3s = {
-    enable = true;
-    role = "agent";
-    token = "<randomized common secret>";
-    serverAddr = "https://192.168.56.110:6443";
-  };
+  services.k3s.roles = "agent";
+  services.k3s.token = "<randomized common secret>";
+  services.k3s.serverAddr = "https://192.168.56.110:6443";
 
 }

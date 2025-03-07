@@ -2,7 +2,7 @@
 /*.box
 /.vagrant
 /iso
-/output-virtualbox-iso
+/output*
 /packer_cache
 /vendor
 /tooling/.DS_Store
@@ -10,7 +10,7 @@
 /tooling/.vagrant
 /tooling/iso
 /tooling/*.iso
-/tooling/output-virtualbox-iso
+/tooling/output*
 /tooling/packer_cache
 /tooling/vendor
 /ubuntu_jammy64
