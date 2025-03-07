@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     server.vm.box = "mynixos"
     server.vm.hostname = "atouatiS"
     server.vm.network "private_network", ip: "192.168.56.110"
-    server.vm.provision :nixos, run: 'always', path: "conf/server.nix", include: true
+    server.vm.provision :nixos, run: 'always', path: "conf/server.nix"
   end
 
   # # Define second machine (ServerWorker)
