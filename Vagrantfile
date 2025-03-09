@@ -8,16 +8,17 @@ Vagrant.configure("2") do |config|
   #   # vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "3500"
-  #   vb.cpus = 3
+  #   # vb.gui = true
   #   # vb.linked_clone = true
   # end
 
+  # config.vm.boot_timeout = 600
+
   config.vm.define "atouatiS" do |server|
     server.vm.box = "mynixos"
-    server.vm.hostname = "atouatiS"
-    server.vm.network "private_network", ip: "192.168.56.110"
-    # server.vm.provision :nixos, run: 'always', path: "conf/server.nix"
+    # server.vm.hostname = "atouatiS"
+    # server.vm.network "private_network", ip: "192.168.56.110"
+    server.vm.provision :nixos, run: 'always', path: "conf/server.nix"
   end
 
   # # Define second machine (ServerWorker)
