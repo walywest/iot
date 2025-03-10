@@ -19,5 +19,4 @@
     argocd
     lsof
   ];
-  services.k3s.enable = false;
 }
