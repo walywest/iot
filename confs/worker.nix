@@ -13,7 +13,7 @@
         token = "a8c422186fdc9be9846c1f87c00f73d2";
         serverAddr = "https://192.168.56.110:6443";
         extraFlags = [
-            "--bind-address=192.168.56.111"
+            "--node-ip=192.168.56.111"
         ];
     };
 
