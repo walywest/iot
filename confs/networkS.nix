@@ -3,11 +3,16 @@
 
     networking.firewall.allowedTCPPorts = [ 6443 2379 2380 10250 10251 1052 2400];
     networking.firewall.allowedUDPPorts = [  8472 ];
+
+    networking.useNetworkd = true;
+    
+    systemd.network.enable = true;
+
     networking = {
-            # hostName = "atouatiS";
-            # useDHCP = false;
+            hostName = "atouatiS";
     
             interfaces.eth1 = {
+            useDHCP = false;
     
             ipv4.addresses = [
                 {
@@ -17,6 +22,10 @@
     
         };
     
-        # nameservers = [ "8.8.8.8" "8.8.4.4"];
+        nameservers = [ "8.8.8.8" "8.8.4.4"];
     };
+
+    #NOTE: systemd.networkd
+
+
 }

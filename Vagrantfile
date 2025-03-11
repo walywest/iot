@@ -16,29 +16,31 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "atouatiS" do |server|
     server.vm.box = "mynixos"
-    server.vm.hostname = "atouatiS"
-    server.vm.network "private_network", ip: "192.168.56.110"
-    server.vm.provision "shell", inline: <<-SHELL
-      echo "Updating hostname to atouaiS"
-      sudo echo "atouatiS" > /etc/hostname
-      sudo hostname "atouatiS"
-      SHELL
-    server.vm.provision :nixos, run: 'always', path: "conf/server.nix"
+    # server.vm.hostname = "atouatiS"
+    # server.vm.network "private_network", ip: "192.168.56.110"
+    server.vm.provision :nixos, run: 'always', path: "confs/networkS.nix"
+    # server.vm.provision "shell", inline: <<-SHELL
+    #   echo "Updating hostname to atouaiS"
+    #   sudo echo "atouatiS" > /etc/hostname
+    #   sudo hostname "atouatiS"
+    #   SHELL
+    # server.vm.provision :nixos, run: 'always', path: "confs/server.nix"
   end
 
   # Define second machine (ServerWorker)
-  config.vm.define "atouatiSW" do |worker|
-    worker.vm.box = "mynixos"
-    worker.vm.hostname = "atouatiSW"
-    worker.vm.network "private_network", ip: "192.168.56.111"
-    worker.vm.provision "shell", inline: <<-SHELL
-      echo "Updating hostname to $atouatiSW"
-      sudo echo "atouatiSW" > /etc/hostname
-      sudo hostname "atouatiSW"
-      SHELL
-    worker.vm.provision :nixos, run: 'always', path: "conf/worker.nix"
-  end
-  
+  # config.vm.define "atouatiSW" do |worker|
+  #   worker.vm.box = "mynixos"
+  #   worker.vm.hostname = "atouatiSW"
+  #   # worker.vm.network "private_network", ip: "192.168.56.111"
+  #   worker.vm.provision :nixos, run: 'always', path: "confs/networkSW.nix"
+  #   worker.vm.provision "shell", inline: <<-SHELL
+  #     echo "Updating hostname to $atouatiSW"
+  #     sudo echo "atouatiSW" > /etc/hostname
+  #     sudo hostname "atouatiSW"
+  #     SHELL
+  #   worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
+  # end
+  # 
 
 
   # NOTE: This will enable public access to the opened port
