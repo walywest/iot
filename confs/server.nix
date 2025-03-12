@@ -18,6 +18,7 @@
         "--disable=traefik"
         "--disable=local-storage"
             ];
-        clusterInit = true;
+        #NOTE: naming this option is confusing and docs are not elaborating well about the meaning of "clustering", researching...
+        #clusterInit = true;
     };
 }

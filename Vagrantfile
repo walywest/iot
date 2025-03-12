@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
       SHELL
     worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
   end
-  # 
+
 
 
   # NOTE: This will enable public access to the opened port
