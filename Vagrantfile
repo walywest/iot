@@ -6,9 +6,6 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   # vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   # vb.gui = true
     vb.linked_clone = true
   end
 
@@ -16,30 +13,31 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "atouatiS" do |server|
     server.vm.box = "mynixos"
-    # server.vm.hostname = "atouatiS"
-    # server.vm.network "private_network", ip: "192.168.56.110"
-    server.vm.provision :nixos, run: 'always', path: "confs/networkS.nix"
-    # server.vm.provision "shell", inline: <<-SHELL
-    #   echo "Updating hostname to atouaiS"
-    #   sudo echo "atouatiS" > /etc/hostname
-    #   sudo hostname "atouatiS"
-    #   SHELL
-    # server.vm.provision :nixos, run: 'always', path: "confs/server.nix"
+    server.vm.hostname = "atouatiS"
+    server.vm.network "private_network", ip: "192.168.56.110", interface: 1
+    # server.vm.provision :nixos, run: 'always', path: "confs/networkS.nix"
+    server.vm.provision "shell", inline: <<-SHELL
+      echo "Updating hostname to atouaiS"
+      sudo echo "atouatiS" > /etc/hostname
+      sudo hostname "atouatiS"
+      sudo nixos-rebuild switch
+      SHELL
+    server.vm.provision :nixos, run: 'always', path: "confs/server.nix"
   end
 
   # Define second machine (ServerWorker)
-  # config.vm.define "atouatiSW" do |worker|
-  #   worker.vm.box = "mynixos"
-  #   worker.vm.hostname = "atouatiSW"
-  #   # worker.vm.network "private_network", ip: "192.168.56.111"
-  #   worker.vm.provision :nixos, run: 'always', path: "confs/networkSW.nix"
-  #   worker.vm.provision "shell", inline: <<-SHELL
-  #     echo "Updating hostname to $atouatiSW"
-  #     sudo echo "atouatiSW" > /etc/hostname
-  #     sudo hostname "atouatiSW"
-  #     SHELL
-  #   worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
-  # end
+  config.vm.define "atouatiSW" do |worker|
+    worker.vm.box = "mynixos"
+    worker.vm.hostname = "atouatiSW"
+    worker.vm.network "private_network", ip: "192.168.56.111"
+    worker.vm.provision "shell", inline: <<-SHELL
+      echo "Updating hostname to $atouatiSW"
+      sudo echo "atouatiSW" > /etc/hostname
+      sudo hostname "atouatiSW"
+      sudo nixos-rebuild switch
+      SHELL
+    worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
+  end
   # 
 
 

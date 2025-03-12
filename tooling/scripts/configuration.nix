@@ -10,6 +10,7 @@
       ./custom-configuration.nix
     ];
 
+  networking.usePredictableInterfaceNames = false;
 
 
   # remove the fsck that runs at startup. It will always fail to run, stopping
