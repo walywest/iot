@@ -5,6 +5,9 @@ BOX_FILE=$(BUILD_DIR)/nixos-$(VERSION)-virtualbox-iso.virtualbox-x86_64.box
 
 .PHONY: build init run
 
+#NOTE: 1- downloads iso of lightweight nixos 24.11
+#		builds the .box file with packer and nix declarations (default options, vagrant user...) and install scripts (creating partitions...)
+#		finally exports the .box to be added as a vagrant box
 all: build add
 
 build:
@@ -13,9 +16,5 @@ build:
 add:
 	@vagrant box add $(BOX_NAME) $(BOX_FILE)
 
-init:
-	@vagrant init $(BOX_NAME) || true
-
-run: init
+run:
 	@vagrant up --provision
-	@echo -e "\033[0;32mYou can now use 'vagrant ssh' to connect to our nixBox\033[0m"
