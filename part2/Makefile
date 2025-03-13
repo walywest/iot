@@ -12,7 +12,6 @@ all: build add
 
 build:
 	@cd $(BUILD_DIR) && make build
-	echo 'kgn --->> sudo k3s kubectl get nodes -o wide'
 
 add:
 	@vagrant box add $(BOX_NAME) $(BOX_FILE)

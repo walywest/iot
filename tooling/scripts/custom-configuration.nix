@@ -18,5 +18,7 @@
     docker
     argocd
     lsof
-  ];
+   (writeShellScriptBin "kgn" ''
+            sudo k3s kubectl get nodes -o wide
+  '') ];
 }
