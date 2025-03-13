@@ -3,6 +3,12 @@
 
   # K3S Agent mode
 
+    environment.systemPackages = with pkgs; [
+        (writeShellScriptBin "kgn" ''
+            sudo k3s kubectl get nodes -o wide
+        '')
+    ];
+
     #NOTE: maybe just disable the firewall?
     networking.firewall.allowedTCPPorts = [ 6443 2379 2380 10250 10251 1052 2400];
     networking.firewall.allowedUDPPorts = [  8472 ];

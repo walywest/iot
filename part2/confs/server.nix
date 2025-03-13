@@ -1,24 +1,23 @@
 {config, pkgs, ...}:
 {
-    #NOTE: maybe just disable the firewall?
-    networking.firewall.allowedTCPPorts = [ 6443 2379 2380 10250 10251 1052 2400];
-    networking.firewall.allowedUDPPorts = [  8472 ];
+    environment.systemPackages = with pkgs; [
+        (writeShellScriptBin "kgn" ''
+            sudo k3s kubectl get nodes -o wide
+        '')
+    ];
 
-    #NOTE: i think this occupates port 2380 which is neede (so far) by k3s
-    services.etcd.enable = false;
+  networking.firewall.allowedTCPPorts = [
+    6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+    # 2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+    # 2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+  ];
+  networking.firewall.allowedUDPPorts = [
+    # 8472 # k3s, flannel: required if using multi-node for inter-node networking
+  ];
+  services.k3s.enable = true;
+  services.k3s.role = "server";
+  services.k3s.extraFlags = toString [
+    # "--debug" # Optionally add additional args to k3s
+  ];
 
-    services.k3s = {
-        enable = true;
-        role = "server";
-        token = "a8c422186fdc9be9846c1f87c00f73d2";
-        extraFlags = [
-        "--node-ip=192.168.56.110"
-        "--write-kubeconfig-mode=0644"
-        "--disable=servicelb"
-        "--disable=traefik"
-        "--disable=local-storage"
-            ];
-        #NOTE: naming this option is confusing and docs are not elaborating well about the meaning of "clustering", researching...
-        #clusterInit = true;
-    };
 }
