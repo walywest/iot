@@ -1,5 +1,5 @@
 VERSION=24.11
-BUILD_DIR=tooling
+BUILD_DIR=../tooling
 BOX_NAME=mynixos
 BOX_FILE=$(BUILD_DIR)/nixos-$(VERSION)-virtualbox-iso.virtualbox-x86_64.box
 

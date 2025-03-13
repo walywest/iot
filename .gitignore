@@ -5,6 +5,13 @@
 /output*
 /packer_cache
 /vendor
+/part1/.DS_Store
+/part1/*.box
+/part1/.vagrant
+/part1/iso
+/part1/output*
+/part1/packer_cache
+/part1/vendor
 /tooling/.DS_Store
 /tooling/*.box
 /tooling/.vagrant
@@ -13,4 +20,3 @@
 /tooling/output*
 /tooling/packer_cache
 /tooling/vendor
-/ubuntu_jammy64
