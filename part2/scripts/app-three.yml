@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-one
+  name: app-three
 spec:
   selector:
-    app: app-one
+    app: app-three
   ports:
   - port: 80
 
@@ -13,24 +13,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-one
+  name: app-three
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-one
+      app: app-three
   template:
     metadata:
       labels:
-        app: app-one
+        app: app-three
     spec:
       containers:
-      - name: app-one
+      - name: app-three
         image: nginx
         ports:
         - containerPort: 80
         env:
         - name: MESSAGE
-          value: "Hello from App1!"
+          value: "Hello from App3!"
         command: ["/bin/sh", "-c"]
         args: ["echo $(MESSAGE) > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
