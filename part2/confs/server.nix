@@ -5,17 +5,9 @@
     environment.systemPackages = with pkgs; [
 
         #NOTE: check status
-        (writeShellScriptBin "kgs" ''sudo k3s kubectl get services -o wide'')
-        (writeShellScriptBin "kgp" ''sudo k3s kubectl get pods -o wide'')
-        (writeShellScriptBin "kgd" ''sudo k3s kubectl get deployments -o wide'')
-        (writeShellScriptBin "kga" ''sudo k3s kubectl get all'')
-        (writeShellScriptBin "kgan" ''sudo k3s kubectl get all -n kube-system'')
-        (writeShellScriptBin "kgn" ''sudo k3s kubectl get nodes -o wide'')
         (writeShellScriptBin "reb" ''sudo nixos-rebuild switch'')
 
         #NOTE: troubleshoot
-        (writeShellScriptBin "net_log" ''journalctl -u systemd-networkd --no-pager --since "10 minutes ago"'')
-        (writeShellScriptBin "k_log" ''journalctl -u k3s.service --no-pager --since "1 hour ago"'')
 
         (writeShellScriptBin "ed" ''vim /etc/nixos/vagrant-provision.nix'')
 
