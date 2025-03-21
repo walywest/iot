@@ -20,6 +20,9 @@
     #NOTE:-------------------------------------------------
 
   networking.firewall.enable = false;
+    networking.hosts = {
+      "192.168.56.110" = ["app2.com" "app1.com" "app3.com" "app4.com"];
+    };
   # networking.firewall.allowedTCPPorts = [
   #   6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
   #   30007 # testing
@@ -34,7 +37,6 @@
         role = "server";
         extraFlags = [ "--node-ip=192.168.56.110"
             "--disable=traefik"
-            "--disable=servicelb"
         ];
     };
     # "--debug" # Optionally add additional args to k3s

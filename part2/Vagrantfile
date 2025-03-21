@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
     server.vm.provision "shell", inline: <<-SHELL
       sudo chmod +x /vagrant/scripts/reset_cluster.sh
       sudo export DEPLOYMENTS="/vagrant/scripts/"
+      sudo /vagrant/scripts/controller.sh
       sudo /vagrant/scripts/deploy.sh
       sudo cat /vagrant/scripts/usefulrc > /root/.bashrc
       SHELL
