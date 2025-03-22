@@ -6,6 +6,7 @@ metadata:
     # We are defining this annotation to prevent nginx
     # from redirecting requests to `https` for now
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/default-backend: app-three
 spec:
   ingressClassName: nginx
   rules:

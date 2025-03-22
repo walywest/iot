@@ -39,5 +39,4 @@
             "--disable=traefik"
         ];
     };
-    # "--debug" # Optionally add additional args to k3s
 }
