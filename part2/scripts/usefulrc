@@ -1,6 +1,9 @@
-#NOTE: bzaaaaf
+#NOTE: useful commands for development
+alias k_reset="sudo /vagrant/scripts/reset_cluster.sh"
+alias ed="sudo vim /etc/nixos/vagrant-provision.nix"
+alias reb="sudo nixos-rebuild switch"
+alias res="ed && reb && k_reset && ed && reb"
 alias delete_webhook="sudo k3s kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission"
-alias k3s_reset="sudo $HOME/.local/bin/k3s_reset.sh"
 alias kg="sudo k3s kubectl get"
 alias k="sudo k3s kubectl"
 alias kgpi="sudo k3s kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx"
