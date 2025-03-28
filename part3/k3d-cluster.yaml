@@ -1,0 +1,16 @@
+# k3d cluster configuration
+apiVersion: k3d.io/v1alpha5
+
+kind: Simple
+metadata:
+  name: my-cluster
+
+  # FIX: mal had l9lawi maba ikhdm?
+# image: rancher/k3s:v1.32.3-k3s1
+# ports:
+#   - port: 30007:30007
+#     nodeFilters:
+#       - server:0
+
+# Cluster settings
+servers: 1
