@@ -1,0 +1,24 @@
+# k3d cluster configuration
+apiVersion: k3d.io/v1alpha5
+
+kind: Simple
+metadata:
+  name: my-cluster
+
+image: rancher/k3s:v1.32.3-k3s1
+ports:
+  # - port: 8888:30007
+  #   nodeFilters:
+  #     - server:0
+  # - port: 8080:30008
+  #   nodeFilters:
+  #     - server:0
+  - port: 8181:8181 # same as `--port '8080:80@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
+  - port: 8080:30080 # same as `--port '8080:30080@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
+
+# Cluster settings
+servers: 1
