@@ -7,16 +7,16 @@ metadata:
 
 image: rancher/k3s:v1.32.3-k3s1
 ports:
-  # - port: 8888:30007
-  #   nodeFilters:
-  #     - server:0
-  # - port: 8080:30008
-  #   nodeFilters:
-  #     - server:0
-  - port: 8181:8181 # same as `--port '8080:80@loadbalancer'`
+  - port: 30008:30008
+    nodeFilters:
+      - server:0
+  - port: 8888:30007
+    nodeFilters:
+      - server:0
+  - port: 80:80 #NOTE: loadbalancer
     nodeFilters:
       - loadbalancer
-  - port: 8080:30080 # same as `--port '8080:30080@loadbalancer'`
+  - port: 22:22 #NOTE: ssh
     nodeFilters:
       - loadbalancer
 
