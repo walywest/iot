@@ -20,3 +20,8 @@ For ease of use, i included the nixbox project inside the BUILD_DIR, and made ne
 ## Usage:
 run ```./part3/scripts/ressources.sh``` to spin up local single node k3d wrapped cluster, with a CI that uses argocd to keep our placeholder app synced with github repo.
 **more to be described here**
+# Part 4:
+(note, this part still needs small tweeks)
+**SAME AS PART 3** but we will be using our own local gitlab instance to host our placeholder apps.
+## Usage:
+run ```./bonus/scripts/ressources.sh && ./bonus/scripts/gitlab.sh```
