@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
       echo "Updating hostname to atouaiS"
       sudo echo "atouatiS" > /etc/hostname
       sudo hostname "atouatiS"
+      sudo /vagrant/scripts/merge-k3s-kubectl.sh
       SHELL
     server.vm.network "private_network", ip: "192.168.56.110", interface: 1
     server.vm.provision :nixos, run: 'always', path: "confs/server.nix"
@@ -32,6 +33,8 @@ Vagrant.configure("2") do |config|
       echo "Updating hostname to $atouatiSW"
       sudo echo "atouatiSW" > /etc/hostname
       sudo hostname "atouatiSW"
+      sudo chmod +x /vagrant/scripts/merge-k3s-kubectl.sh
+      sudo /vagrant/scripts/merge-k3s-kubectl.sh
       SHELL
     worker.vm.network "private_network", ip: "192.168.56.111"
     worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"

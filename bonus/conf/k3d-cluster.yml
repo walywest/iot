@@ -7,18 +7,33 @@ metadata:
 
 image: rancher/k3s:v1.32.3-k3s1
 ports:
+#NOTE: exposing argocd nodeport that I CREATED WITH argocd-config.yml
   - port: 30008:30008
     nodeFilters:
       - server:0
+#NOTE: exposing wil42 nodeport (check wil42.yaml in aababach repo, this is the repo that will be watched)
   - port: 8888:30007
     nodeFilters:
       - server:0
-  - port: 80:80 #NOTE: loadbalancer
+# #NOTE: not sure if i need this one?
+  - port: 80:80
     nodeFilters:
       - loadbalancer
-  - port: 22:22 #NOTE: ssh
+  #NOTE: ssh (cloning and pushing into our local gitlab)
+  - port: 22:22
     nodeFilters:
       - loadbalancer
+  #NOTE: gitlab webservices redirects are using https
+  - port: 443:443
+    nodeFilters:
+      - loadbalancer
+  #NOTE: gitlab uses nginx. (according to docs we have to disable traefik in that case)
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
 
 # Cluster settings
 servers: 1

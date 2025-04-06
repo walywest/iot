@@ -9,15 +9,12 @@ Vagrant.configure("2") do |config|
     vb.linked_clone = true
   end
 
-  # config.vm.boot_timeout = 600
-
   config.vm.define "atouatiS_2" do |server|
     server.vm.box = "mynixos"
     server.vm.hostname = "atouatiS"
     # server.vm.provision :nixos, run: 'always', path: "confs/networkS.nix"
     server.vm.provision "shell", inline: <<-SHELL
       echo "Updating hostname to atouaiS"
-      sudo echo "atouatiS" > /etc/hostname
       sudo hostname "atouatiS"
       SHELL
     server.vm.network "private_network", ip: "192.168.56.110"
@@ -28,6 +25,8 @@ Vagrant.configure("2") do |config|
       sudo chmod +x /vagrant/scripts/reset_cluster.sh
       sudo /vagrant/scripts/CDR_RBAC.sh
       sudo /vagrant/scripts/deploy.sh
+      sudo chmod +x /vagrant/scripts/merge-k3s-kubectl.sh
+      sudo /vagrant/scripts/merge-k3s-kubectl.sh
       sudo cat /vagrant/scripts/usefulrc > /root/.bashrc
       SHELL
   end
