@@ -7,6 +7,9 @@ Vagrant.configure("2") do |config|
   #   # Display the VirtualBox GUI when booting the machine
   #   # vb.gui = true
     vb.linked_clone = true
+    #ISSUE: suspecting that this version and configuration of nix does not play well with memory
+    # vb.memory = 1024
+    # vb.cpus = 1
   end
 
   # config.vm.boot_timeout = 600
@@ -18,27 +21,32 @@ Vagrant.configure("2") do |config|
     server.vm.provision "shell", inline: <<-SHELL
       echo "Updating hostname to atouaiS"
       sudo echo "atouatiS" > /etc/hostname
-      sudo hostname "atouatiS"
-      sudo /vagrant/scripts/merge-k3s-kubectl.sh
+      sudo cat /vagrant/scripts/usefulrc > /root/.bashrc
       SHELL
     server.vm.network "private_network", ip: "192.168.56.110", interface: 1
     server.vm.provision :nixos, run: 'always', path: "confs/server.nix"
+    # server.vm.provision "shell", inline: <<-SHELL
+    #   sudo nixos-rebuild switch
+    #   SHELL
+    #
   end
 
   # Define second machine (ServerWorker)
-  config.vm.define "atouatiSW" do |worker|
-    worker.vm.box = "mynixos"
-    worker.vm.hostname = "atouatiSW"
-    worker.vm.provision "shell", inline: <<-SHELL
-      echo "Updating hostname to $atouatiSW"
-      sudo echo "atouatiSW" > /etc/hostname
-      sudo hostname "atouatiSW"
-      sudo chmod +x /vagrant/scripts/merge-k3s-kubectl.sh
-      sudo /vagrant/scripts/merge-k3s-kubectl.sh
-      SHELL
-    worker.vm.network "private_network", ip: "192.168.56.111"
-    worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
-  end
+  # config.vm.define "atouatiSW" do |worker|
+  #   worker.vm.box = "mynixos"
+  #   worker.vm.hostname = "atouatiSW"
+  #   worker.vm.network "private_network", ip: "192.168.56.111"
+  #
+  #   worker.vm.synced_folder "scripts/", "/vagrant/scripts", type: "rsync"
+  #   worker.vm.provision :nixos, run: 'always', path: "confs/worker.nix"
+  #
+  #   worker.vm.provision "shell", inline: <<-SHELL
+  #     echo "Updating hostname to $atouatiSW"
+  #     sudo hostname "atouatiSW"
+  #     sudo chmod +x /vagrant/scripts/merge-k3s-kubectl.sh
+  #     sudo /vagrant/scripts/merge-k3s-kubectl.sh
+  #     SHELL
+  # end
 
 
 

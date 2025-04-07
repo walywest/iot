@@ -1,5 +1,6 @@
 DIR="/home/dumbledoor/Desktop/mynixbox/bonus"
 
+sudo kubectl create namespace gitlab
 sudo helm repo add gitlab https://charts.gitlab.io/
 sudo helm repo update
 sudo helm upgrade --install gitlab gitlab/gitlab \

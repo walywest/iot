@@ -1,4 +1,5 @@
 # Description
+ I choose a declarative infrastructure approach using Nixos, and vagrant to manage it.
 For ease of use, i included the nixbox project inside the BUILD_DIR, and made necessary tweaks (OS version, configuration.nix...).
 
 # Part 1 and Part 2:
